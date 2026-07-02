@@ -1,4 +1,10 @@
 import { cn } from '@/lib/utils';
+import {
+  type FontFamilyKey,
+  type FontStyleKey,
+  type FontWeightKey,
+  resolveFontFamily,
+} from '@/constants/fonts';
 import { Slot } from '@rn-primitives/slot';
 import { cva, type VariantProps } from 'class-variance-authority';
 import * as React from 'react';
@@ -62,25 +68,40 @@ const ARIA_LEVEL: Partial<Record<TextVariant, string>> = {
   h4: '4',
 };
 
+export type FontProp = {
+  family: FontFamilyKey;
+  weight?: FontWeightKey;
+  style?: FontStyleKey;
+};
+
 const TextClassContext = React.createContext<string | undefined>(undefined);
 
 function Text({
   className,
   asChild = false,
   variant = 'default',
+  font,
+  style,
   ...props
 }: React.ComponentProps<typeof RNText> &
   React.RefAttributes<typeof RNText> &
   TextVariantProps & {
     asChild?: boolean;
+    font?: FontProp;
   }) {
   const textClass = React.useContext(TextClassContext);
   const Component = asChild ? Slot : RNText;
+
+  const fontStyle = font
+    ? { fontFamily: resolveFontFamily(font.family, font.weight, font.style) }
+    : undefined;
+
   return (
     <Component
       className={cn(textVariants({ variant }), textClass, className)}
       role={variant ? ROLE[variant] : undefined}
       aria-level={variant ? ARIA_LEVEL[variant] : undefined}
+      style={[fontStyle, style]}
       {...props}
     />
   );

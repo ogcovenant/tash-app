@@ -35,7 +35,11 @@ export default function Screen() {
           <Text className="ios:text-foreground text-muted-foreground font-mono text-sm">
             1. Edit <Text variant="code">app/index.tsx</Text> to get started.
           </Text>
-          <Text className="ios:text-foreground text-muted-foreground font-mono text-sm">
+          <Text
+            font={{
+              family: 'SourceSans3',
+            }}
+            className="ios:text-foreground text-muted-foreground font-mono text-sm">
             2. Save to see your changes instantly.
           </Text>
         </View>
