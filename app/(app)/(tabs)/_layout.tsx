@@ -12,14 +12,14 @@ export default function TabsLayout() {
         headerShown: false,
         tabBarShowLabel: false,
         tabBarStyle: {
-          backgroundColor: '#FFFFFF',
-          borderTopColor: '#E8E5E0',
+          backgroundColor: '#FFF6EE',
+          borderTopColor: '#E8D6C8',
           height: 60 + (insets.bottom > 0 ? insets.bottom - 10 : 0),
           paddingBottom: insets.bottom > 0 ? insets.bottom - 10 : 10,
           paddingTop: 10,
         },
-        tabBarActiveTintColor: '#1C1C1E',
-        tabBarInactiveTintColor: '#7A7A7A',
+        tabBarActiveTintColor: '#C75A3A',
+        tabBarInactiveTintColor: '#A94E2C',
       }}
     >
       <Tabs.Screen

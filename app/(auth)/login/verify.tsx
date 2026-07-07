@@ -23,7 +23,7 @@ export default function LoginVerifyScreen() {
           <Pressable style={{ alignItems: 'center' }}>
             <Text
               font={{ family: 'SourceSans3', weight: 'SemiBold' }}
-              style={{ fontSize: 15, color: '#1C1C1E', textDecorationLine: 'underline' }}
+              style={{ fontSize: 15, color: '#C75A3A', textDecorationLine: 'underline' }}
             >
               Resend code
             </Text>

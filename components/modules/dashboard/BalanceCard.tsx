@@ -22,7 +22,7 @@ function ActionButton({ icon, label }: ActionButtonProps) {
       >
         {icon}
       </Pressable>
-      <Text font={{ family: 'SourceSans3' }} style={{ fontSize: 13, color: '#E8E5E0' }}>
+      <Text font={{ family: 'SourceSans3' }} style={{ fontSize: 13, color: '#E8D6C8' }}>
         {label}
       </Text>
     </View>
@@ -33,7 +33,7 @@ export function BalanceCard() {
   return (
     <View
       style={{
-        backgroundColor: '#1C1C1E',
+        backgroundColor: '#C75A3A',
         borderRadius: 28,
         padding: 24,
         marginBottom: 32,
@@ -41,24 +41,24 @@ export function BalanceCard() {
     >
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 20 }}>
         <View>
-          <Text font={{ family: 'SourceSans3' }} style={{ fontSize: 15, color: '#A0A0A0', marginBottom: 8 }}>
+          <Text font={{ family: 'SourceSans3' }} style={{ fontSize: 15, color: '#E8D6C8', marginBottom: 8 }}>
             Total Balance
           </Text>
-          <Text font={{ family: 'PlayfairDisplay', weight: 'Bold' }} style={{ fontSize: 36, color: '#FFFFFF', letterSpacing: -1, paddingBottom: 4, lineHeight: 44 }}>
+          <Text font={{ family: 'PlayfairDisplay', weight: 'Bold' }} style={{ fontSize: 36, color: '#FFF6EE', letterSpacing: -1, paddingBottom: 4, lineHeight: 44 }}>
             ₦12,450.00
           </Text>
         </View>
         <View style={{ backgroundColor: 'rgba(255,255,255,0.1)', paddingHorizontal: 12, paddingVertical: 6, borderRadius: 12 }}>
-          <Text font={{ family: 'SourceSans3', weight: 'SemiBold' }} style={{ fontSize: 13, color: '#FFFFFF' }}>
+          <Text font={{ family: 'SourceSans3', weight: 'SemiBold' }} style={{ fontSize: 13, color: '#FFF6EE' }}>
             NGN
           </Text>
         </View>
       </View>
 
       <View style={{ flexDirection: 'row', justifyContent: 'space-around', paddingTop: 8 }}>
-        <ActionButton icon={<Plus color="#FFFFFF" size={24} />} label="Add money" />
-        <ActionButton icon={<Send color="#FFFFFF" size={24} />} label="Transfer" />
-        <ActionButton icon={<MoreHorizontal color="#FFFFFF" size={24} />} label="More" />
+        <ActionButton icon={<Plus color="#FFF6EE" size={24} />} label="Add money" />
+        <ActionButton icon={<Send color="#FFF6EE" size={24} />} label="Transfer" />
+        <ActionButton icon={<MoreHorizontal color="#FFF6EE" size={24} />} label="More" />
       </View>
     </View>
   );

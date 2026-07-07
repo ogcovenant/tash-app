@@ -54,15 +54,15 @@ export function OtpInput({ length = 6, onComplete }: Props) {
           onKeyPress={(e) => handleKeyPress(e, index)}
           keyboardType="number-pad"
           maxLength={1}
-          selectionColor="#1C1C1E"
+          selectionColor="#C75A3A"
           style={{
             width: 48,
             height: 56,
-            backgroundColor: digit ? '#E8E5E0' : '#F0EEEA',
+            backgroundColor: digit ? '#F4B860' : '#E8D6C8',
             borderRadius: 14,
             textAlign: 'center',
             fontSize: 22,
-            color: '#1C1C1E',
+            color: '#1F1714',
             fontFamily: resolveFontFamily('SourceSans3', 'SemiBold'),
           }}
         />

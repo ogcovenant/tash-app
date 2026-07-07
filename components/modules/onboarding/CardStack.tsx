@@ -1,3 +1,4 @@
+import { Logo } from '@/components/ui/logo';
 import { Text } from '@/components/ui/text';
 import * as React from 'react';
 import { View } from 'react-native';
@@ -11,7 +12,7 @@ import Animated, {
   withTiming,
   Easing,
 } from 'react-native-reanimated';
-import Svg, { Circle, Rect, Path } from 'react-native-svg';
+import Svg, { Circle, Rect } from 'react-native-svg';
 import { useEffect } from 'react';
 
 const CARD_WIDTH = 295;
@@ -22,35 +23,16 @@ function MastercardLogo({ size = 32 }: { size?: number }) {
   const circleR = size / 2.6;
   return (
     <Svg width={size * 1.6} height={size} viewBox="0 0 52 32">
-      <Circle cx={18} cy={16} r={circleR} fill="#EB001B" />
-      <Circle cx={34} cy={16} r={circleR} fill="#F79E1B" />
+      <Circle cx={18} cy={16} r={circleR} fill="#C75A3A" />
+      <Circle cx={34} cy={16} r={circleR} fill="#F4B860" />
     </Svg>
   );
 }
 
-function FinuvoLogo() {
+function CardBrandLogo() {
   return (
-    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-      <View
-        style={{
-          width: 24,
-          height: 24,
-          borderRadius: 6,
-          backgroundColor: '#1C1C1E',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <Svg width={14} height={14} viewBox="0 0 14 14">
-          <Path d="M3 2h8v2H5v2h5v2H5v4H3V2Z" fill="#FFFFFF" />
-        </Svg>
-      </View>
-      <Text
-        font={{ family: 'SourceSans3', weight: 'SemiBold' }}
-        style={{ fontSize: 14, color: '#1C1C1E', letterSpacing: 0.3 }}
-      >
-        Finuvo
-      </Text>
+    <View style={{ width: 78, height: 28, alignItems: 'flex-start', justifyContent: 'center' }}>
+      <Logo size={28} />
     </View>
   );
 }
@@ -58,11 +40,11 @@ function FinuvoLogo() {
 function ChipIcon() {
   return (
     <Svg width={36} height={28} viewBox="0 0 36 28">
-      <Rect x={0} y={0} width={36} height={28} rx={5} fill="#C8964C" />
-      <Rect x={0} y={8} width={36} height={2} fill="#B8863C" />
-      <Rect x={0} y={18} width={36} height={2} fill="#B8863C" />
-      <Rect x={12} y={0} width={2} height={28} fill="#B8863C" />
-      <Rect x={22} y={0} width={2} height={28} fill="#B8863C" />
+      <Rect x={0} y={0} width={36} height={28} rx={5} fill="#F4B860" />
+      <Rect x={0} y={8} width={36} height={2} fill="#A94E2C" />
+      <Rect x={0} y={18} width={36} height={2} fill="#A94E2C" />
+      <Rect x={12} y={0} width={2} height={28} fill="#A94E2C" />
+      <Rect x={22} y={0} width={2} height={28} fill="#A94E2C" />
     </Svg>
   );
 }
@@ -166,7 +148,7 @@ export function CardStack() {
             left: 15,
             width: CARD_WIDTH - 20,
             height: CARD_HEIGHT - 20,
-            backgroundColor: '#3BB896',
+            backgroundColor: '#A94E2C',
             borderRadius: CARD_RADIUS,
             zIndex: 1,
             ...SHADOW_SM,
@@ -183,7 +165,7 @@ export function CardStack() {
             left: 8,
             width: CARD_WIDTH - 8,
             height: CARD_HEIGHT - 10,
-            backgroundColor: '#F0D98C',
+            backgroundColor: '#F4B860',
             borderRadius: CARD_RADIUS,
             zIndex: 2,
             paddingHorizontal: 20,
@@ -194,7 +176,7 @@ export function CardStack() {
         ]}
       >
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-          <FinuvoLogo />
+          <CardBrandLogo />
           <MastercardLogo size={26} />
         </View>
       </Animated.View>
@@ -207,7 +189,7 @@ export function CardStack() {
             left: 0,
             width: CARD_WIDTH,
             height: CARD_HEIGHT,
-            backgroundColor: '#B5DDE9',
+            backgroundColor: '#E8D6C8',
             borderRadius: CARD_RADIUS,
             zIndex: 3,
             paddingHorizontal: 22,
@@ -220,21 +202,21 @@ export function CardStack() {
         ]}
       >
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-          <FinuvoLogo />
+          <CardBrandLogo />
           <MastercardLogo size={28} />
         </View>
 
         <View>
           <Text
             font={{ family: 'SourceSans3' }}
-            style={{ fontSize: 11, color: '#5A6B70', marginBottom: 2, letterSpacing: 0.3 }}
+            style={{ fontSize: 11, color: '#A94E2C', marginBottom: 2, letterSpacing: 0.3 }}
           >
             Cardholder Name
           </Text>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end' }}>
             <Text
               font={{ family: 'PlayfairDisplay', weight: 'Medium' }}
-              style={{ fontSize: 20, color: '#1C1C1E' }}
+              style={{ fontSize: 20, color: '#1F1714' }}
             >
               Arthur Taylor
             </Text>

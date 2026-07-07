@@ -1,3 +1,4 @@
+import { Logo } from '@/components/ui/logo';
 import { Text } from '@/components/ui/text';
 import { useRouter } from 'expo-router';
 import * as React from 'react';
@@ -64,7 +65,7 @@ export function AuthScreenLayout({
     <View
       style={{
         flex: 1,
-        backgroundColor: '#F5F2ED',
+        backgroundColor: '#FFF6EE',
         paddingTop: insets.top,
         paddingBottom: insets.bottom + 8,
       }}
@@ -89,7 +90,7 @@ export function AuthScreenLayout({
             <Svg width={24} height={24} viewBox="0 0 24 24" fill="none">
               <Path
                 d="M15 18l-6-6 6-6"
-                stroke="#1C1C1E"
+                stroke="#1F1714"
                 strokeWidth={2}
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -98,9 +99,10 @@ export function AuthScreenLayout({
           </Pressable>
 
           <View style={{ marginTop: 20 }}>
+            <Logo size={44} style={{ marginBottom: 18 }} />
             <Text
               font={{ family: 'PlayfairDisplay', weight: 'Bold' }}
-              style={{ fontSize: 28, lineHeight: 34, color: '#1C1C1E', letterSpacing: -0.3 }}
+              style={{ fontSize: 28, lineHeight: 34, color: '#1F1714', letterSpacing: -0.3 }}
             >
               {heading}
             </Text>
@@ -109,7 +111,7 @@ export function AuthScreenLayout({
           <View style={{ marginTop: 10 }}>
             <Text
               font={{ family: 'SourceSans3' }}
-              style={{ fontSize: 15, lineHeight: 21, color: '#7A7A7A' }}
+              style={{ fontSize: 15, lineHeight: 21, color: '#A94E2C' }}
             >
               {subtitle}
             </Text>
@@ -141,7 +143,7 @@ export function AuthScreenLayout({
                 {
                   height: 54,
                   borderRadius: 27,
-                  backgroundColor: '#1C1C1E',
+                  backgroundColor: '#C75A3A',
                   alignItems: 'center',
                   justifyContent: 'center',
                 },
@@ -150,7 +152,7 @@ export function AuthScreenLayout({
             >
               <Text
                 font={{ family: 'SourceSans3', weight: 'SemiBold' }}
-                style={{ fontSize: 16, color: '#FFFFFF' }}
+                style={{ fontSize: 16, color: '#FFF6EE' }}
               >
                 {continueLabel}
               </Text>

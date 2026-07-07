@@ -69,7 +69,7 @@ export function PinInput({ length = 4, onComplete }: Props) {
                   width: 18,
                   height: 18,
                   borderRadius: 9,
-                  backgroundColor: i < pin.length ? '#1C1C1E' : '#E8E5E0',
+                  backgroundColor: i < pin.length ? '#C75A3A' : '#E8D6C8',
                 },
                 style,
               ]}
@@ -101,14 +101,14 @@ export function PinInput({ length = 4, onComplete }: Props) {
                     <Svg width={28} height={28} viewBox="0 0 24 24" fill="none">
                       <Path
                         d="M21 4H8l-7 8 7 8h13a2 2 0 002-2V6a2 2 0 00-2-2z"
-                        stroke="#1C1C1E"
+                        stroke="#1F1714"
                         strokeWidth={1.5}
                         strokeLinecap="round"
                         strokeLinejoin="round"
                       />
                       <Path
                         d="M18 9l-6 6M12 9l6 6"
-                        stroke="#1C1C1E"
+                        stroke="#1F1714"
                         strokeWidth={1.5}
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -126,14 +126,14 @@ export function PinInput({ length = 4, onComplete }: Props) {
                     width: 72,
                     height: 72,
                     borderRadius: 36,
-                    backgroundColor: pressed ? '#E4E1DC' : '#F0EEEA',
+                    backgroundColor: pressed ? '#E8D6C8' : '#FFF6EE',
                     alignItems: 'center',
                     justifyContent: 'center',
                   })}
                 >
                   <Text
                     font={{ family: 'SourceSans3', weight: 'Medium' }}
-                    style={{ fontSize: 28, color: '#1C1C1E' }}
+                    style={{ fontSize: 28, color: '#1F1714' }}
                   >
                     {key}
                   </Text>

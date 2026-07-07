@@ -10,7 +10,7 @@ const TRANSACTIONS = [
     amount: '-₦5.40',
     date: 'Today, 09:41 AM',
     type: 'debit',
-    icon: <Coffee color="#1C1C1E" size={20} />,
+    icon: <Coffee color="#1F1714" size={20} />,
   },
   {
     id: '2',
@@ -19,7 +19,7 @@ const TRANSACTIONS = [
     amount: '+₦4,200.00',
     date: 'Yesterday, 10:00 AM',
     type: 'credit',
-    icon: <ArrowDownLeft color="#1C1C1E" size={20} />,
+    icon: <ArrowDownLeft color="#1F1714" size={20} />,
   },
   {
     id: '3',
@@ -28,7 +28,7 @@ const TRANSACTIONS = [
     amount: '-₦999.00',
     date: 'Jun 28, 04:30 PM',
     type: 'debit',
-    icon: <ShoppingBag color="#1C1C1E" size={20} />,
+    icon: <ShoppingBag color="#1F1714" size={20} />,
   },
   {
     id: '4',
@@ -37,7 +37,7 @@ const TRANSACTIONS = [
     amount: '-₦150.00',
     date: 'Jun 25, 08:15 PM',
     type: 'debit',
-    icon: <ArrowUpRight color="#1C1C1E" size={20} />,
+    icon: <ArrowUpRight color="#1F1714" size={20} />,
   },
 ];
 
@@ -45,10 +45,10 @@ export function RecentTransactions() {
   return (
     <View style={{ paddingBottom: 100 }}>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
-        <Text font={{ family: 'PlayfairDisplay', weight: 'Bold' }} style={{ fontSize: 20, color: '#1C1C1E' }}>
+        <Text font={{ family: 'PlayfairDisplay', weight: 'Bold' }} style={{ fontSize: 20, color: '#1F1714' }}>
           Recent activity
         </Text>
-        <Text font={{ family: 'SourceSans3', weight: 'SemiBold' }} style={{ fontSize: 14, color: '#7A7A7A' }}>
+        <Text font={{ family: 'SourceSans3', weight: 'SemiBold' }} style={{ fontSize: 14, color: '#A94E2C' }}>
           See all
         </Text>
       </View>
@@ -62,7 +62,7 @@ export function RecentTransactions() {
                   width: 48,
                   height: 48,
                   borderRadius: 24,
-                  backgroundColor: '#FFFFFF',
+                  backgroundColor: '#FFF6EE',
                   alignItems: 'center',
                   justifyContent: 'center',
                 }}
@@ -70,17 +70,17 @@ export function RecentTransactions() {
                 {tx.icon}
               </View>
               <View>
-                <Text font={{ family: 'SourceSans3', weight: 'SemiBold' }} style={{ fontSize: 16, color: '#1C1C1E', marginBottom: 4 }}>
+                <Text font={{ family: 'SourceSans3', weight: 'SemiBold' }} style={{ fontSize: 16, color: '#1F1714', marginBottom: 4 }}>
                   {tx.title}
                 </Text>
-                <Text font={{ family: 'SourceSans3' }} style={{ fontSize: 13, color: '#7A7A7A' }}>
+                <Text font={{ family: 'SourceSans3' }} style={{ fontSize: 13, color: '#A94E2C' }}>
                   {tx.date}
                 </Text>
               </View>
             </View>
             <Text
               font={{ family: 'SourceSans3', weight: 'SemiBold' }}
-              style={{ fontSize: 16, color: tx.type === 'credit' ? '#34C759' : '#1C1C1E' }}
+              style={{ fontSize: 16, color: tx.type === 'credit' ? '#F4B860' : '#1F1714' }}
             >
               {tx.amount}
             </Text>

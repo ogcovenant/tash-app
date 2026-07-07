@@ -3,7 +3,7 @@ import { View } from 'react-native';
 
 export default function ProfileScreen() {
   return (
-    <View style={{ flex: 1, backgroundColor: '#F5F2ED', alignItems: 'center', justifyContent: 'center' }}>
+    <View style={{ flex: 1, backgroundColor: '#FFF6EE', alignItems: 'center', justifyContent: 'center' }}>
       <Text font={{ family: 'PlayfairDisplay', weight: 'Bold' }} style={{ fontSize: 24 }}>
         Profile
       </Text>

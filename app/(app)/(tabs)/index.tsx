@@ -9,7 +9,7 @@ export default function DashboardHome() {
   const insets = useSafeAreaInsets();
 
   return (
-    <View style={{ flex: 1, backgroundColor: '#F5F2ED' }}>
+    <View style={{ flex: 1, backgroundColor: '#FFF6EE' }}>
       <ScrollView
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{

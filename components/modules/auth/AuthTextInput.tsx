@@ -5,17 +5,17 @@ import { resolveFontFamily } from '@/constants/fonts';
 export function AuthTextInput(props: TextInputProps) {
   return (
     <TextInput
-      placeholderTextColor="#A0A0A0"
-      selectionColor="#1C1C1E"
+      placeholderTextColor="#A94E2C"
+      selectionColor="#C75A3A"
       {...props}
       style={[
         {
           height: 54,
-          backgroundColor: '#F0EEEA',
+          backgroundColor: '#E8D6C8',
           borderRadius: 16,
           paddingHorizontal: 18,
           fontSize: 16,
-          color: '#1C1C1E',
+          color: '#1F1714',
           fontFamily: resolveFontFamily('SourceSans3', 'Regular'),
         },
         props.style,

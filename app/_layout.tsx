@@ -35,7 +35,7 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={NAV_THEME[theme ?? 'light']}>
-      <StatusBar style={theme === 'dark' ? 'light' : 'dark'} />
+      <StatusBar style={'dark'} />
       <Stack screenOptions={{ headerShown: false }} />
       <PortalHost />
     </ThemeProvider>

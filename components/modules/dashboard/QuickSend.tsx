@@ -13,7 +13,7 @@ const CONTACTS = [
 export function QuickSend() {
   return (
     <View style={{ marginBottom: 32 }}>
-      <Text font={{ family: 'PlayfairDisplay', weight: 'Bold' }} style={{ fontSize: 20, color: '#1C1C1E', marginBottom: 16 }}>
+      <Text font={{ family: 'PlayfairDisplay', weight: 'Bold' }} style={{ fontSize: 20, color: '#1F1714', marginBottom: 16 }}>
         Quick Send
       </Text>
       <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 20 }}>
@@ -23,17 +23,17 @@ export function QuickSend() {
               width: 56,
               height: 56,
               borderRadius: 28,
-              backgroundColor: '#FFFFFF',
+              backgroundColor: '#FFF6EE',
               borderWidth: 1,
-              borderColor: '#E8E5E0',
+              borderColor: '#E8D6C8',
               borderStyle: 'dashed',
               alignItems: 'center',
               justifyContent: 'center',
             }}
           >
-            <Plus color="#1C1C1E" size={24} />
+            <Plus color="#1F1714" size={24} />
           </View>
-          <Text font={{ family: 'SourceSans3' }} style={{ fontSize: 13, color: '#1C1C1E' }}>
+          <Text font={{ family: 'SourceSans3' }} style={{ fontSize: 13, color: '#1F1714' }}>
             New
           </Text>
         </View>
@@ -42,9 +42,9 @@ export function QuickSend() {
           <View key={contact.id} style={{ alignItems: 'center', gap: 8 }}>
             <Image
               source={{ uri: contact.image }}
-              style={{ width: 56, height: 56, borderRadius: 28, backgroundColor: '#E8E5E0' }}
+              style={{ width: 56, height: 56, borderRadius: 28, backgroundColor: '#E8D6C8' }}
             />
-            <Text font={{ family: 'SourceSans3' }} style={{ fontSize: 13, color: '#7A7A7A' }}>
+            <Text font={{ family: 'SourceSans3' }} style={{ fontSize: 13, color: '#A94E2C' }}>
               {contact.name}
             </Text>
           </View>

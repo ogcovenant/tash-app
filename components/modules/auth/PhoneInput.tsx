@@ -22,7 +22,7 @@ export function PhoneInput({
       <Pressable
         style={{
           height: 54,
-          backgroundColor: '#F0EEEA',
+          backgroundColor: '#E8D6C8',
           borderRadius: 16,
           paddingHorizontal: 14,
           flexDirection: 'row',
@@ -33,14 +33,14 @@ export function PhoneInput({
         <Text style={{ fontSize: 20 }}>{countryFlag}</Text>
         <Text
           font={{ family: 'SourceSans3', weight: 'Medium' }}
-          style={{ fontSize: 16, color: '#1C1C1E' }}
+          style={{ fontSize: 16, color: '#1F1714' }}
         >
           {countryCode}
         </Text>
         <Svg width={12} height={12} viewBox="0 0 12 12">
           <Path
             d="M3 4.5l3 3 3-3"
-            stroke="#7A7A7A"
+            stroke="#A94E2C"
             strokeWidth={1.5}
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -52,17 +52,17 @@ export function PhoneInput({
         value={phoneNumber}
         onChangeText={onChangePhoneNumber}
         placeholder="801 234 5678"
-        placeholderTextColor="#A0A0A0"
+        placeholderTextColor="#A94E2C"
         keyboardType="phone-pad"
-        selectionColor="#1C1C1E"
+        selectionColor="#C75A3A"
         style={{
           flex: 1,
           height: 54,
-          backgroundColor: '#F0EEEA',
+          backgroundColor: '#E8D6C8',
           borderRadius: 16,
           paddingHorizontal: 18,
           fontSize: 16,
-          color: '#1C1C1E',
+          color: '#1F1714',
           fontFamily: resolveFontFamily('SourceSans3', 'Regular'),
         }}
       />
