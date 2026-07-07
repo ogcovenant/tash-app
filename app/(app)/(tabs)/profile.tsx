@@ -1,13 +1,6 @@
 import { Text } from '@/components/ui/text';
 import { useColors } from '@/lib/use-colors';
-import {
-  Bell,
-  ChevronRight,
-  CreditCard,
-  LogOut,
-  ShieldCheck,
-  UserCog,
-} from 'lucide-react-native';
+import { Bell, ChevronRight, CreditCard, LogOut, ShieldCheck, UserCog } from 'lucide-react-native';
 import * as React from 'react';
 import { Image, Pressable, ScrollView, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -27,7 +20,11 @@ export default function ProfileScreen() {
     <View style={{ flex: 1, backgroundColor: colors.bg }}>
       <ScrollView
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingTop: insets.top + 8, paddingHorizontal: 22, paddingBottom: 24 }}>
+        contentContainerStyle={{
+          paddingTop: insets.top + 8,
+          paddingHorizontal: 22,
+          paddingBottom: 24,
+        }}>
         <Text
           font={{ family: 'PlayfairDisplay', weight: 'Bold' }}
           style={{ fontSize: 26, color: colors.heading, letterSpacing: -0.3 }}>
@@ -42,10 +39,10 @@ export default function ProfileScreen() {
           <Text
             font={{ family: 'PlayfairDisplay', weight: 'Bold' }}
             style={{ fontSize: 20, color: colors.heading, marginTop: 12 }}>
-            Praise Dominic
+            Timi Leyin
           </Text>
           <Text font={{ family: 'SourceSans3' }} style={{ fontSize: 14, color: colors.subtitle }}>
-            praise@ping.app
+            timi@ping.app
           </Text>
         </View>
 

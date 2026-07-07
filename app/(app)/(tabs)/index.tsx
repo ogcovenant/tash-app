@@ -30,7 +30,7 @@ const TXNS = [
   { title: 'Money Received', sub: 'From Adaeze Okoro • Today, 9:41 AM', amount: '+₦45,000', in: true },
   { title: 'Tap & Pay', sub: 'Store purchase • Today, 8:02 AM', amount: '-₦12,000', in: false },
   { title: 'Split Bills', sub: 'With 3 people • Yesterday', amount: '-₦6,500', in: false },
-  { title: 'Send Money', sub: 'To Praise Dominic • Jul 4', amount: '-₦20,000', in: false },
+  { title: 'Send Money', sub: 'To Timileyin • Jul 4', amount: '-₦20,000', in: false },
 ];
 
 export default function DashboardHome() {
