@@ -12,7 +12,7 @@ export function createDirectDebitMandate(
     currency: string;
   },
   options?: RequestOptions,
-  api?: ApiClient,
+  api?: ApiClient
 ): Promise<DirectDebitMandate> {
   return client(api).request('/api/v1/direct-debit/mandates', {
     method: 'POST',
@@ -24,7 +24,7 @@ export function createDirectDebitMandate(
 
 export function listDirectDebitMandates(
   options?: RequestOptions,
-  api?: ApiClient,
+  api?: ApiClient
 ): Promise<DirectDebitMandate[]> {
   return client(api).request('/api/v1/direct-debit/mandates', {
     accessToken: options?.accessToken,
@@ -35,7 +35,7 @@ export function listDirectDebitMandates(
 export function getDirectDebitMandate(
   uuid: string,
   options?: RequestOptions,
-  api?: ApiClient,
+  api?: ApiClient
 ): Promise<DirectDebitMandate> {
   return client(api).request(`/api/v1/direct-debit/mandates/${encodeURIComponent(uuid)}`, {
     accessToken: options?.accessToken,
@@ -45,9 +45,9 @@ export function getDirectDebitMandate(
 
 export function authorizeDirectDebitMandate(
   uuid: string,
-  payload: { authorizationReference: string },
+  payload?: { authorizationReference?: string },
   options?: RequestOptions,
-  api?: ApiClient,
+  api?: ApiClient
 ): Promise<DirectDebitMandate> {
   return client(api).request(
     `/api/v1/direct-debit/mandates/${encodeURIComponent(uuid)}/authorize`,
@@ -56,23 +56,20 @@ export function authorizeDirectDebitMandate(
       body: payload,
       accessToken: options?.accessToken,
       signal: options?.signal,
-    },
+    }
   );
 }
 
 export function revokeDirectDebitMandate(
   uuid: string,
-  payload: { reason: string },
+  payload?: { reason?: string },
   options?: RequestOptions,
-  api?: ApiClient,
+  api?: ApiClient
 ): Promise<DirectDebitMandate> {
-  return client(api).request(
-    `/api/v1/direct-debit/mandates/${encodeURIComponent(uuid)}/revoke`,
-    {
-      method: 'POST',
-      body: payload,
-      accessToken: options?.accessToken,
-      signal: options?.signal,
-    },
-  );
+  return client(api).request(`/api/v1/direct-debit/mandates/${encodeURIComponent(uuid)}/revoke`, {
+    method: 'POST',
+    body: payload,
+    accessToken: options?.accessToken,
+    signal: options?.signal,
+  });
 }

@@ -57,6 +57,21 @@ export function submitCardOtp(
   );
 }
 
+export function resendCardOtp(
+  reference: string,
+  options?: RequestOptions,
+  api?: ApiClient
+): Promise<CardRegistrationSession> {
+  return client(api).request(
+    `/api/v1/cards/registration-sessions/${encodeURIComponent(reference)}/resend-otp`,
+    {
+      method: 'POST',
+      accessToken: options?.accessToken,
+      signal: options?.signal,
+    }
+  );
+}
+
 export function listCards(options?: RequestOptions, api?: ApiClient): Promise<Card[]> {
   return client(api).request('/api/v1/cards', {
     accessToken: options?.accessToken,

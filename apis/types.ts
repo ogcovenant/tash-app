@@ -178,12 +178,7 @@ export type CardFunding = {
 };
 
 export type DirectDebitMandateStatus =
-  | 'pending'
-  | 'requires_authorization'
-  | 'active'
-  | 'failed'
-  | 'expired'
-  | 'revoked';
+  'pending' | 'requires_authorization' | 'active' | 'failed' | 'expired' | 'revoked';
 
 export type DirectDebitMandate = {
   uuid: string;
@@ -195,6 +190,7 @@ export type DirectDebitMandate = {
   currency: string;
   maximumAmount: number;
   status: DirectDebitMandateStatus;
+  metadata?: Record<string, unknown> | null;
   authorizedAt: string | null;
   expiresAt: string | null;
   revokedAt: string | null;

@@ -10,6 +10,7 @@ import {
   type DirectDebitMandate,
 } from '@/apis';
 import { Text } from '@/components/ui/text';
+import { useSession } from '@/providers/session-provider';
 import { useFocusEffect, useRouter } from 'expo-router';
 import {
   BadgeCheck,
@@ -93,14 +94,18 @@ function EmptyState({
         onPress={onPress}
         style={{
           marginTop: 14,
+          minWidth: 124,
           height: 44,
           borderRadius: 22,
           backgroundColor: ORANGE,
-          paddingHorizontal: 18,
+          paddingHorizontal: 22,
           alignItems: 'center',
           justifyContent: 'center',
         }}>
-        <Text font={{ family: 'SourceSans3', weight: 'Bold' }} style={{ color: INK, fontSize: 14 }}>
+        <Text
+          font={{ family: 'SourceSans3', weight: 'Bold' }}
+          numberOfLines={1}
+          style={{ color: INK, fontSize: 14 }}>
           {actionLabel}
         </Text>
       </Pressable>
@@ -372,11 +377,44 @@ function MandateRow({
 export default function CardsScreen() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
+  const { user } = useSession();
   const [cards, setCards] = React.useState<Card[]>([]);
   const [mandates, setMandates] = React.useState<DirectDebitMandate[]>([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const [busyKey, setBusyKey] = React.useState<string | null>(null);
   const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
+
+  const missingPaymentContactDetails = [
+    !user?.email ? 'email' : null,
+    !user?.phoneNumber ? 'phone number' : null,
+  ].filter(Boolean) as string[];
+  const canStartPaymentSetup = missingPaymentContactDetails.length === 0;
+  const missingPaymentContactLabel = missingPaymentContactDetails.join(' and ');
+
+  const requirePaymentContactDetails = (action: string) => {
+    if (canStartPaymentSetup) {
+      return true;
+    }
+
+    setErrorMessage(`Add your ${missingPaymentContactLabel} to your profile before ${action}.`);
+    return false;
+  };
+
+  const startCardSetup = () => {
+    if (!requirePaymentContactDetails('adding a card')) {
+      return;
+    }
+
+    router.push('/cards/add' as never);
+  };
+
+  const startDirectDebitSetup = () => {
+    if (!requirePaymentContactDetails('setting up direct debit')) {
+      return;
+    }
+
+    router.push('/direct-debit/new' as never);
+  };
 
   const loadPaymentMethods = React.useCallback(async (signal: AbortSignal) => {
     setIsLoading(true);
@@ -479,41 +517,47 @@ export default function CardsScreen() {
 
         <View style={{ flexDirection: 'row', gap: 10, marginTop: 24 }}>
           <Pressable
-            onPress={() => router.push('/cards/add' as never)}
+            onPress={startCardSetup}
             style={{
               flex: 1,
+              minWidth: 0,
               height: 52,
               borderRadius: 26,
               backgroundColor: ORANGE,
               flexDirection: 'row',
               alignItems: 'center',
               justifyContent: 'center',
-              gap: 8,
+              gap: 6,
+              paddingHorizontal: 12,
             }}>
             <Plus color={INK} size={20} />
             <Text
               font={{ family: 'SourceSans3', weight: 'Bold' }}
-              style={{ color: INK, fontSize: 15 }}>
+              numberOfLines={1}
+              style={{ color: INK, fontSize: 14 }}>
               Add card
             </Text>
           </Pressable>
           <Pressable
-            onPress={() => router.push('/direct-debit/new' as never)}
+            onPress={startDirectDebitSetup}
             style={{
-              flex: 1,
+              flex: 1.18,
+              minWidth: 0,
               height: 52,
               borderRadius: 26,
               backgroundColor: BLACK,
               flexDirection: 'row',
               alignItems: 'center',
               justifyContent: 'center',
-              gap: 8,
+              gap: 6,
+              paddingHorizontal: 12,
             }}>
             <Building2 color="#FFFFFF" size={19} />
             <Text
               font={{ family: 'SourceSans3', weight: 'Bold' }}
-              style={{ color: '#FFFFFF', fontSize: 15 }}>
-              Add debit
+              numberOfLines={1}
+              style={{ color: '#FFFFFF', fontSize: 14 }}>
+              Add bank
             </Text>
           </Pressable>
         </View>
@@ -547,7 +591,7 @@ export default function CardsScreen() {
               <EmptyState
                 title="No saved cards yet"
                 actionLabel="Add card"
-                onPress={() => router.push('/cards/add' as never)}
+                onPress={startCardSetup}
               />
             ) : (
               cards.map((card) => (
@@ -577,9 +621,9 @@ export default function CardsScreen() {
           <View style={{ marginTop: 12 }}>
             {mandates.length === 0 && !isLoading ? (
               <EmptyState
-                title="No mandates yet"
-                actionLabel="Add direct debit"
-                onPress={() => router.push('/direct-debit/new' as never)}
+                title="No bank yet"
+                actionLabel="Add bank"
+                onPress={startDirectDebitSetup}
               />
             ) : (
               mandates.map((mandate) => (

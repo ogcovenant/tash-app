@@ -17,15 +17,12 @@ const BG = '#FAFAF1';
 const INK = '#151713';
 const MUTED = '#6F746A';
 const ORANGE = '#FF6A12';
+const BLACK = '#050505';
 const LINE = '#DFE1D4';
 const DANGER = '#B42318';
 
 function isOtpRequired(session: CardRegistrationSession) {
   return session.status === 'pending' && session.metadata.nextAction === 'submit_otp';
-}
-
-function isValidEmail(value: string) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
 }
 
 function Field({
@@ -86,15 +83,20 @@ export default function AddCardScreen() {
   const [cvv, setCvv] = React.useState('');
   const [cardPin, setCardPin] = React.useState('');
   const [cardholderName, setCardholderName] = React.useState('');
-  const [email, setEmail] = React.useState('');
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
 
   const sanitizedCardNumber = cardNumber.replace(/\D/g, '');
-  const sessionEmail = user?.email ?? email.trim();
-  const needsEmail = !user?.email;
+  const hasEmail = Boolean(user?.email);
+  const hasPhoneNumber = Boolean(user?.phoneNumber);
+  const missingContactDetails = [
+    !hasEmail ? 'email' : null,
+    !hasPhoneNumber ? 'phone number' : null,
+  ].filter(Boolean) as string[];
+  const canStartSetup = missingContactDetails.length === 0;
+  const missingContactLabel = missingContactDetails.join(' and ');
   const canSubmit =
-    (!needsEmail || isValidEmail(email)) &&
+    canStartSetup &&
     sanitizedCardNumber.length >= 12 &&
     expiryMonth.length === 2 &&
     expiryYear.length === 4 &&
@@ -120,7 +122,7 @@ export default function AddCardScreen() {
     try {
       const session = await createCardRegistrationSession({
         currency: 'NGN',
-        email: sessionEmail || undefined,
+        email: user?.email ?? undefined,
       });
       const result = await submitCardDetails(session.reference, {
         cardNumber: sanitizedCardNumber,
@@ -206,106 +208,140 @@ export default function AddCardScreen() {
           </Text>
         </View>
 
-        <View style={{ gap: 16, marginTop: 28 }}>
-          {needsEmail ? (
-            <Field
-              label="Email"
-              value={email}
-              onChangeText={(value) => setEmail(value.trim())}
-              placeholder="user@example.com"
-              keyboardType="email-address"
-            />
-          ) : null}
-          <Field
-            label="Card number"
-            value={cardNumber}
-            onChangeText={(value) => setCardNumber(value.replace(/\D/g, '').slice(0, 19))}
-            placeholder="4111111111111111"
-            keyboardType="number-pad"
-          />
-          <View style={{ flexDirection: 'row', gap: 12 }}>
-            <View style={{ flex: 1 }}>
-              <Field
-                label="Month"
-                value={expiryMonth}
-                onChangeText={(value) => setExpiryMonth(value.replace(/\D/g, '').slice(0, 2))}
-                placeholder="12"
-                keyboardType="number-pad"
-                maxLength={2}
-              />
-            </View>
-            <View style={{ flex: 1 }}>
-              <Field
-                label="Year"
-                value={expiryYear}
-                onChangeText={(value) => setExpiryYear(value.replace(/\D/g, '').slice(0, 4))}
-                placeholder="2030"
-                keyboardType="number-pad"
-                maxLength={4}
-              />
-            </View>
-          </View>
-          <View style={{ flexDirection: 'row', gap: 12 }}>
-            <View style={{ flex: 1 }}>
-              <Field
-                label="CVV"
-                value={cvv}
-                onChangeText={(value) => setCvv(value.replace(/\D/g, '').slice(0, 4))}
-                placeholder="123"
-                keyboardType="number-pad"
-                secureTextEntry
-                maxLength={4}
-              />
-            </View>
-            <View style={{ flex: 1 }}>
-              <Field
-                label="Card PIN"
-                value={cardPin}
-                onChangeText={(value) => setCardPin(value.replace(/\D/g, '').slice(0, 4))}
-                placeholder="Optional"
-                keyboardType="number-pad"
-                secureTextEntry
-                maxLength={4}
-              />
-            </View>
-          </View>
-          <Field
-            label="Cardholder name"
-            value={cardholderName}
-            onChangeText={setCardholderName}
-            placeholder="Optional name"
-          />
-        </View>
-
-        {errorMessage ? (
-          <Text
-            font={{ family: 'SourceSans3', weight: 'SemiBold' }}
-            style={{ marginTop: 16, color: DANGER, fontSize: 14 }}>
-            {errorMessage}
-          </Text>
-        ) : null}
-
-        <Pressable
-          disabled={!canSubmit}
-          onPress={handleSubmit}
-          style={{
-            marginTop: 28,
-            height: 56,
-            borderRadius: 28,
-            backgroundColor: canSubmit ? ORANGE : '#E5E7DA',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
-          {isSubmitting ? (
-            <ActivityIndicator color={INK} />
-          ) : (
+        {!canStartSetup ? (
+          <View
+            style={{
+              marginTop: 28,
+              borderRadius: 20,
+              borderWidth: 1,
+              borderColor: '#FED7AA',
+              backgroundColor: '#FFF7ED',
+              padding: 16,
+            }}>
             <Text
               font={{ family: 'SourceSans3', weight: 'Bold' }}
               style={{ color: INK, fontSize: 16 }}>
-              Submit card
+              Contact detail required
             </Text>
-          )}
-        </Pressable>
+            <Text
+              font={{ family: 'SourceSans3', weight: 'SemiBold' }}
+              style={{ marginTop: 6, color: MUTED, fontSize: 14, lineHeight: 20 }}>
+              Add your {missingContactLabel} to your profile before adding a card.
+            </Text>
+            <Pressable
+              onPress={() => router.push('/settings/account-details' as never)}
+              style={{
+                alignSelf: 'flex-start',
+                marginTop: 14,
+                height: 42,
+                borderRadius: 21,
+                backgroundColor: BLACK,
+                paddingHorizontal: 18,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              <Text
+                font={{ family: 'SourceSans3', weight: 'Bold' }}
+                style={{ color: '#FFFFFF', fontSize: 14 }}>
+                View profile
+              </Text>
+            </Pressable>
+          </View>
+        ) : (
+          <>
+            <View style={{ gap: 16, marginTop: 28 }}>
+              <Field
+                label="Card number"
+                value={cardNumber}
+                onChangeText={(value) => setCardNumber(value.replace(/\D/g, '').slice(0, 19))}
+                placeholder="4111111111111111"
+                keyboardType="number-pad"
+              />
+              <View style={{ flexDirection: 'row', gap: 12 }}>
+                <View style={{ flex: 1 }}>
+                  <Field
+                    label="Month"
+                    value={expiryMonth}
+                    onChangeText={(value) => setExpiryMonth(value.replace(/\D/g, '').slice(0, 2))}
+                    placeholder="12"
+                    keyboardType="number-pad"
+                    maxLength={2}
+                  />
+                </View>
+                <View style={{ flex: 1 }}>
+                  <Field
+                    label="Year"
+                    value={expiryYear}
+                    onChangeText={(value) => setExpiryYear(value.replace(/\D/g, '').slice(0, 4))}
+                    placeholder="2030"
+                    keyboardType="number-pad"
+                    maxLength={4}
+                  />
+                </View>
+              </View>
+              <View style={{ flexDirection: 'row', gap: 12 }}>
+                <View style={{ flex: 1 }}>
+                  <Field
+                    label="CVV"
+                    value={cvv}
+                    onChangeText={(value) => setCvv(value.replace(/\D/g, '').slice(0, 4))}
+                    placeholder="123"
+                    keyboardType="number-pad"
+                    secureTextEntry
+                    maxLength={4}
+                  />
+                </View>
+                <View style={{ flex: 1 }}>
+                  <Field
+                    label="Card PIN"
+                    value={cardPin}
+                    onChangeText={(value) => setCardPin(value.replace(/\D/g, '').slice(0, 4))}
+                    placeholder="Optional"
+                    keyboardType="number-pad"
+                    secureTextEntry
+                    maxLength={4}
+                  />
+                </View>
+              </View>
+              <Field
+                label="Cardholder name"
+                value={cardholderName}
+                onChangeText={setCardholderName}
+                placeholder="Optional name"
+              />
+            </View>
+
+            {errorMessage ? (
+              <Text
+                font={{ family: 'SourceSans3', weight: 'SemiBold' }}
+                style={{ marginTop: 16, color: DANGER, fontSize: 14 }}>
+                {errorMessage}
+              </Text>
+            ) : null}
+
+            <Pressable
+              disabled={!canSubmit}
+              onPress={handleSubmit}
+              style={{
+                marginTop: 28,
+                height: 56,
+                borderRadius: 28,
+                backgroundColor: canSubmit ? ORANGE : '#E5E7DA',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              {isSubmitting ? (
+                <ActivityIndicator color={INK} />
+              ) : (
+                <Text
+                  font={{ family: 'SourceSans3', weight: 'Bold' }}
+                  style={{ color: INK, fontSize: 16 }}>
+                  Submit card
+                </Text>
+              )}
+            </Pressable>
+          </>
+        )}
       </KeyboardAwareScrollView>
     </View>
   );

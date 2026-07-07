@@ -1,4 +1,4 @@
-import { ApiRequestError, submitCardOtp } from '@/apis';
+import { ApiRequestError, resendCardOtp, submitCardOtp } from '@/apis';
 import { Text } from '@/components/ui/text';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import { ArrowLeft, ShieldCheck } from 'lucide-react-native';
@@ -20,6 +20,7 @@ const MUTED = '#6F746A';
 const ORANGE = '#FF6A12';
 const LINE = '#DFE1D4';
 const DANGER = '#B42318';
+const RESEND_COOLDOWN_SECONDS = 45;
 
 export default function CardOtpScreen() {
   const insets = useSafeAreaInsets();
@@ -27,9 +28,25 @@ export default function CardOtpScreen() {
   const { reference } = useLocalSearchParams<{ reference?: string }>();
   const [otp, setOtp] = React.useState('');
   const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const [isResending, setIsResending] = React.useState(false);
+  const [resendCooldown, setResendCooldown] = React.useState(0);
   const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
+  const [resendMessage, setResendMessage] = React.useState<string | null>(null);
 
   const canSubmit = Boolean(reference) && otp.length >= 4 && !isSubmitting;
+  const canResend = Boolean(reference) && !isResending && resendCooldown === 0;
+
+  React.useEffect(() => {
+    if (resendCooldown <= 0) {
+      return;
+    }
+
+    const timeoutId = setTimeout(() => {
+      setResendCooldown((seconds) => Math.max(0, seconds - 1));
+    }, 1000);
+
+    return () => clearTimeout(timeoutId);
+  }, [resendCooldown]);
 
   const handleSubmit = async () => {
     if (!canSubmit || !reference) {
@@ -50,6 +67,26 @@ export default function CardOtpScreen() {
       );
     } finally {
       setIsSubmitting(false);
+    }
+  };
+
+  const handleResend = async () => {
+    if (!canResend || !reference) {
+      return;
+    }
+
+    setIsResending(true);
+    setErrorMessage(null);
+    setResendMessage(null);
+
+    try {
+      await resendCardOtp(reference);
+      setResendCooldown(RESEND_COOLDOWN_SECONDS);
+      setResendMessage('OTP resent.');
+    } catch {
+      setErrorMessage('Could not resend OTP. Please try again.');
+    } finally {
+      setIsResending(false);
     }
   };
 
@@ -143,6 +180,13 @@ export default function CardOtpScreen() {
             {errorMessage}
           </Text>
         ) : null}
+        {resendMessage ? (
+          <Text
+            font={{ family: 'SourceSans3', weight: 'SemiBold' }}
+            style={{ marginTop: 16, color: ORANGE, fontSize: 14 }}>
+            {resendMessage}
+          </Text>
+        ) : null}
 
         <Pressable
           disabled={!canSubmit}
@@ -162,6 +206,31 @@ export default function CardOtpScreen() {
               font={{ family: 'SourceSans3', weight: 'Bold' }}
               style={{ color: INK, fontSize: 16 }}>
               Verify card
+            </Text>
+          )}
+        </Pressable>
+
+        <Pressable
+          disabled={!canResend}
+          onPress={handleResend}
+          style={{
+            marginTop: 14,
+            height: 48,
+            borderRadius: 24,
+            borderWidth: 1,
+            borderColor: LINE,
+            backgroundColor: '#FFFFFF',
+            alignItems: 'center',
+            justifyContent: 'center',
+            opacity: canResend ? 1 : 0.65,
+          }}>
+          {isResending ? (
+            <ActivityIndicator color={ORANGE} />
+          ) : (
+            <Text
+              font={{ family: 'SourceSans3', weight: 'Bold' }}
+              style={{ color: canResend ? ORANGE : MUTED, fontSize: 15 }}>
+              {resendCooldown > 0 ? `Resend OTP in ${resendCooldown}s` : 'Resend OTP'}
             </Text>
           )}
         </Pressable>
