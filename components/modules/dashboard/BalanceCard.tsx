@@ -22,7 +22,7 @@ function ActionButton({ icon, label }: ActionButtonProps) {
       >
         {icon}
       </Pressable>
-      <Text font={{ family: 'SourceSans3' }} style={{ fontSize: 13, color: '#E8D6C8' }}>
+      <Text font={{ family: 'Onest' }} style={{ fontSize: 13, color: '#E8D6C8' }}>
         {label}
       </Text>
     </View>
@@ -41,7 +41,7 @@ export function BalanceCard() {
     >
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 20 }}>
         <View>
-          <Text font={{ family: 'SourceSans3' }} style={{ fontSize: 15, color: '#E8D6C8', marginBottom: 8 }}>
+          <Text font={{ family: 'Onest' }} style={{ fontSize: 15, color: '#E8D6C8', marginBottom: 8 }}>
             Total Balance
           </Text>
           <Text font={{ family: 'PlayfairDisplay', weight: 'Bold' }} style={{ fontSize: 36, color: '#FFF6EE', letterSpacing: -1, paddingBottom: 4, lineHeight: 44 }}>
@@ -49,7 +49,7 @@ export function BalanceCard() {
           </Text>
         </View>
         <View style={{ backgroundColor: 'rgba(255,255,255,0.1)', paddingHorizontal: 12, paddingVertical: 6, borderRadius: 12 }}>
-          <Text font={{ family: 'SourceSans3', weight: 'SemiBold' }} style={{ fontSize: 13, color: '#FFF6EE' }}>
+          <Text font={{ family: 'Onest', weight: 'SemiBold' }} style={{ fontSize: 13, color: '#FFF6EE' }}>
             NGN
           </Text>
         </View>

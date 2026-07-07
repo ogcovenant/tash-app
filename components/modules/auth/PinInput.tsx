@@ -132,7 +132,7 @@ export function PinInput({ length = 4, onComplete }: Props) {
                   })}
                 >
                   <Text
-                    font={{ family: 'SourceSans3', weight: 'Medium' }}
+                    font={{ family: 'Onest', weight: 'Medium' }}
                     style={{ fontSize: 28, color: '#1F1714' }}
                   >
                     {key}

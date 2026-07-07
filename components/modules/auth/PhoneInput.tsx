@@ -32,7 +32,7 @@ export function PhoneInput({
       >
         <Text style={{ fontSize: 20 }}>{countryFlag}</Text>
         <Text
-          font={{ family: 'SourceSans3', weight: 'Medium' }}
+          font={{ family: 'Onest', weight: 'Medium' }}
           style={{ fontSize: 16, color: '#1F1714' }}
         >
           {countryCode}
@@ -63,7 +63,7 @@ export function PhoneInput({
           paddingHorizontal: 18,
           fontSize: 16,
           color: '#1F1714',
-          fontFamily: resolveFontFamily('SourceSans3', 'Regular'),
+          fontFamily: resolveFontFamily('Onest', 'Regular'),
         }}
       />
     </View>

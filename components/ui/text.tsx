@@ -92,9 +92,11 @@ function Text({
   const textClass = React.useContext(TextClassContext);
   const Component = asChild ? Slot : RNText;
 
-  const fontStyle = font
-    ? { fontFamily: resolveFontFamily(font.family, font.weight, font.style) }
-    : undefined;
+  const fontStyle = {
+    fontFamily: font
+      ? resolveFontFamily(font.family, font.weight, font.style)
+      : resolveFontFamily('Onest'),
+  };
 
   return (
     <Component

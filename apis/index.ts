@@ -1,9 +1,10 @@
-/**
- * API layer barrel file.
- *
- * Export API clients, service functions, and endpoint definitions from here.
- * Organise by domain, e.g.:
- *   apis/auth.ts
- *   apis/transactions.ts
- *   apis/accounts.ts
- */
+export * from './auth';
+export * from './banks';
+export * from './cards';
+export * from './client';
+export * from './directDebit';
+export * from './settings';
+export * from './transfers';
+export * from './types';
+export * from './users';
+export * from './wallets';

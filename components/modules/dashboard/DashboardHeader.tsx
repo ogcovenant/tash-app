@@ -12,7 +12,7 @@ export function DashboardHeader() {
           style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: '#E8D6C8' }}
         />
         <View>
-          <Text font={{ family: 'SourceSans3' }} style={{ fontSize: 14, color: '#A94E2C' }}>
+          <Text font={{ family: 'Onest' }} style={{ fontSize: 14, color: '#A94E2C' }}>
             Good morning,
           </Text>
           <Text font={{ family: 'PlayfairDisplay', weight: 'Bold' }} style={{ fontSize: 20, color: '#1F1714' }}>

@@ -33,7 +33,7 @@ export function QuickSend() {
           >
             <Plus color="#1F1714" size={24} />
           </View>
-          <Text font={{ family: 'SourceSans3' }} style={{ fontSize: 13, color: '#1F1714' }}>
+          <Text font={{ family: 'Onest' }} style={{ fontSize: 13, color: '#1F1714' }}>
             New
           </Text>
         </View>
@@ -44,7 +44,7 @@ export function QuickSend() {
               source={{ uri: contact.image }}
               style={{ width: 56, height: 56, borderRadius: 28, backgroundColor: '#E8D6C8' }}
             />
-            <Text font={{ family: 'SourceSans3' }} style={{ fontSize: 13, color: '#A94E2C' }}>
+            <Text font={{ family: 'Onest' }} style={{ fontSize: 13, color: '#A94E2C' }}>
               {contact.name}
             </Text>
           </View>

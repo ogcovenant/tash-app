@@ -16,7 +16,7 @@ export function AuthTextInput(props: TextInputProps) {
           paddingHorizontal: 18,
           fontSize: 16,
           color: '#1F1714',
-          fontFamily: resolveFontFamily('SourceSans3', 'Regular'),
+          fontFamily: resolveFontFamily('Onest', 'Regular'),
         },
         props.style,
       ]}

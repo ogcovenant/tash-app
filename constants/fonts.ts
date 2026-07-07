@@ -1,4 +1,16 @@
 import {
+  Onest_100Thin,
+  Onest_200ExtraLight,
+  Onest_300Light,
+  Onest_400Regular,
+  Onest_500Medium,
+  Onest_600SemiBold,
+  Onest_700Bold,
+  Onest_800ExtraBold,
+  Onest_900Black,
+} from '@expo-google-fonts/onest';
+
+import {
   PlayfairDisplay_400Regular,
   PlayfairDisplay_500Medium,
   PlayfairDisplay_600SemiBold,
@@ -13,34 +25,15 @@ import {
   PlayfairDisplay_900Black_Italic,
 } from '@expo-google-fonts/playfair-display';
 
-import {
-  SourceSans3_200ExtraLight,
-  SourceSans3_300Light,
-  SourceSans3_400Regular,
-  SourceSans3_500Medium,
-  SourceSans3_600SemiBold,
-  SourceSans3_700Bold,
-  SourceSans3_800ExtraBold,
-  SourceSans3_900Black,
-  SourceSans3_200ExtraLight_Italic,
-  SourceSans3_300Light_Italic,
-  SourceSans3_400Regular_Italic,
-  SourceSans3_500Medium_Italic,
-  SourceSans3_600SemiBold_Italic,
-  SourceSans3_700Bold_Italic,
-  SourceSans3_800ExtraBold_Italic,
-  SourceSans3_900Black_Italic,
-} from '@expo-google-fonts/source-sans-3';
-
-
 export const FontFamily = {
   PlayfairDisplay: 'PlayfairDisplay',
-  SourceSans3: 'SourceSans3',
+  Onest: 'Onest',
 } as const;
 
 export type FontFamilyKey = keyof typeof FontFamily;
 
 export const FontWeight = {
+  Thin: 'Thin',
   ExtraLight: 'ExtraLight',
   Light: 'Light',
   Regular: 'Regular',
@@ -87,49 +80,52 @@ const playfairMap: Record<string, Record<string, string>> = {
   },
 };
 
-const sourceSansMap: Record<string, Record<string, string>> = {
+const onestMap: Record<string, Record<string, string>> = {
+  Thin: {
+    Normal: 'Onest_100Thin',
+    Italic: 'Onest_100Thin',
+  },
   ExtraLight: {
-    Normal: 'SourceSans3_200ExtraLight',
-    Italic: 'SourceSans3_200ExtraLight_Italic',
+    Normal: 'Onest_200ExtraLight',
+    Italic: 'Onest_200ExtraLight',
   },
   Light: {
-    Normal: 'SourceSans3_300Light',
-    Italic: 'SourceSans3_300Light_Italic',
+    Normal: 'Onest_300Light',
+    Italic: 'Onest_300Light',
   },
   Regular: {
-    Normal: 'SourceSans3_400Regular',
-    Italic: 'SourceSans3_400Regular_Italic',
+    Normal: 'Onest_400Regular',
+    Italic: 'Onest_400Regular',
   },
   Medium: {
-    Normal: 'SourceSans3_500Medium',
-    Italic: 'SourceSans3_500Medium_Italic',
+    Normal: 'Onest_500Medium',
+    Italic: 'Onest_500Medium',
   },
   SemiBold: {
-    Normal: 'SourceSans3_600SemiBold',
-    Italic: 'SourceSans3_600SemiBold_Italic',
+    Normal: 'Onest_600SemiBold',
+    Italic: 'Onest_600SemiBold',
   },
   Bold: {
-    Normal: 'SourceSans3_700Bold',
-    Italic: 'SourceSans3_700Bold_Italic',
+    Normal: 'Onest_700Bold',
+    Italic: 'Onest_700Bold',
   },
   ExtraBold: {
-    Normal: 'SourceSans3_800ExtraBold',
-    Italic: 'SourceSans3_800ExtraBold_Italic',
+    Normal: 'Onest_800ExtraBold',
+    Italic: 'Onest_800ExtraBold',
   },
   Black: {
-    Normal: 'SourceSans3_900Black',
-    Italic: 'SourceSans3_900Black_Italic',
+    Normal: 'Onest_900Black',
+    Italic: 'Onest_900Black',
   },
 };
 
 const fontFamilyMap: Record<FontFamilyKey, Record<string, Record<string, string>>> = {
   PlayfairDisplay: playfairMap,
-  SourceSans3: sourceSansMap,
+  Onest: onestMap,
 };
 
-
 export function resolveFontFamily(
-  family: FontFamilyKey,
+  family: FontFamilyKey = 'Onest',
   weight: FontWeightKey = 'Regular',
   style: FontStyleKey = 'Normal'
 ): string {
@@ -138,21 +134,29 @@ export function resolveFontFamily(
   const resolved = weightRecord?.[style];
 
   if (!resolved) {
-    const fallback = familyRecord?.Regular?.Normal;
+    const fallback = familyRecord?.Regular?.Normal ?? onestMap.Regular.Normal;
     if (__DEV__) {
       console.warn(
         `[fonts] Could not resolve font: ${family}/${weight}/${style}. ` +
-          `Falling back to ${fallback ?? 'system font'}.`
+          `Falling back to ${fallback}.`
       );
     }
-    return fallback ?? '';
+    return fallback;
   }
 
   return resolved;
 }
 
 export const fontAssets = {
-  // Playfair Display
+  Onest_100Thin,
+  Onest_200ExtraLight,
+  Onest_300Light,
+  Onest_400Regular,
+  Onest_500Medium,
+  Onest_600SemiBold,
+  Onest_700Bold,
+  Onest_800ExtraBold,
+  Onest_900Black,
   PlayfairDisplay_400Regular,
   PlayfairDisplay_500Medium,
   PlayfairDisplay_600SemiBold,
@@ -165,22 +169,4 @@ export const fontAssets = {
   PlayfairDisplay_700Bold_Italic,
   PlayfairDisplay_800ExtraBold_Italic,
   PlayfairDisplay_900Black_Italic,
-
-  // Source Sans 3
-  SourceSans3_200ExtraLight,
-  SourceSans3_300Light,
-  SourceSans3_400Regular,
-  SourceSans3_500Medium,
-  SourceSans3_600SemiBold,
-  SourceSans3_700Bold,
-  SourceSans3_800ExtraBold,
-  SourceSans3_900Black,
-  SourceSans3_200ExtraLight_Italic,
-  SourceSans3_300Light_Italic,
-  SourceSans3_400Regular_Italic,
-  SourceSans3_500Medium_Italic,
-  SourceSans3_600SemiBold_Italic,
-  SourceSans3_700Bold_Italic,
-  SourceSans3_800ExtraBold_Italic,
-  SourceSans3_900Black_Italic,
 };

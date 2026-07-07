@@ -63,7 +63,7 @@ export function OtpInput({ length = 6, onComplete }: Props) {
             textAlign: 'center',
             fontSize: 22,
             color: '#1F1714',
-            fontFamily: resolveFontFamily('SourceSans3', 'SemiBold'),
+            fontFamily: resolveFontFamily('Onest', 'SemiBold'),
           }}
         />
       ))}

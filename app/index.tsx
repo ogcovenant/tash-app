@@ -54,7 +54,7 @@ function AnimatedButton({
         containerStyle,
       ]}>
       <Text
-        font={{ family: 'SourceSans3', weight: 'SemiBold' }}
+        font={{ family: 'Onest', weight: 'SemiBold' }}
         style={{ fontSize: 16, color: isFilled ? '#FFF6EE' : '#1F1714' }}>
         {label}
       </Text>
@@ -89,7 +89,7 @@ export default function OnboardingScreen() {
           </View>
           <View>
             <Text
-              font={{ family: 'SourceSans3' }}
+              font={{ family: 'Onest' }}
               style={{ fontSize: 15, lineHeight: 21, color: '#A94E2C' }}>
               Connect your card or bank{'\n'} and experience seamless payment.
             </Text>

@@ -110,7 +110,7 @@ export function AuthScreenLayout({
 
           <View style={{ marginTop: 10 }}>
             <Text
-              font={{ family: 'SourceSans3' }}
+              font={{ family: 'Onest' }}
               style={{ fontSize: 15, lineHeight: 21, color: '#A94E2C' }}
             >
               {subtitle}
@@ -151,7 +151,7 @@ export function AuthScreenLayout({
               ]}
             >
               <Text
-                font={{ family: 'SourceSans3', weight: 'SemiBold' }}
+                font={{ family: 'Onest', weight: 'SemiBold' }}
                 style={{ fontSize: 16, color: '#FFF6EE' }}
               >
                 {continueLabel}

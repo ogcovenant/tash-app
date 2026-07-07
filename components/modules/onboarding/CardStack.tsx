@@ -208,7 +208,7 @@ export function CardStack() {
 
         <View>
           <Text
-            font={{ family: 'SourceSans3' }}
+            font={{ family: 'Onest' }}
             style={{ fontSize: 11, color: '#A94E2C', marginBottom: 2, letterSpacing: 0.3 }}
           >
             Cardholder Name

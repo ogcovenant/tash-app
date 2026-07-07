@@ -48,7 +48,7 @@ export function RecentTransactions() {
         <Text font={{ family: 'PlayfairDisplay', weight: 'Bold' }} style={{ fontSize: 20, color: '#1F1714' }}>
           Recent activity
         </Text>
-        <Text font={{ family: 'SourceSans3', weight: 'SemiBold' }} style={{ fontSize: 14, color: '#A94E2C' }}>
+        <Text font={{ family: 'Onest', weight: 'SemiBold' }} style={{ fontSize: 14, color: '#A94E2C' }}>
           See all
         </Text>
       </View>
@@ -70,16 +70,16 @@ export function RecentTransactions() {
                 {tx.icon}
               </View>
               <View>
-                <Text font={{ family: 'SourceSans3', weight: 'SemiBold' }} style={{ fontSize: 16, color: '#1F1714', marginBottom: 4 }}>
+                <Text font={{ family: 'Onest', weight: 'SemiBold' }} style={{ fontSize: 16, color: '#1F1714', marginBottom: 4 }}>
                   {tx.title}
                 </Text>
-                <Text font={{ family: 'SourceSans3' }} style={{ fontSize: 13, color: '#A94E2C' }}>
+                <Text font={{ family: 'Onest' }} style={{ fontSize: 13, color: '#A94E2C' }}>
                   {tx.date}
                 </Text>
               </View>
             </View>
             <Text
-              font={{ family: 'SourceSans3', weight: 'SemiBold' }}
+              font={{ family: 'Onest', weight: 'SemiBold' }}
               style={{ fontSize: 16, color: tx.type === 'credit' ? '#F4B860' : '#1F1714' }}
             >
               {tx.amount}
